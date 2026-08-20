@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moul Lhout | Seafood Experience Casablanca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070B12;
+      --surface: #0F172A;
+      --accent: #00D2FF;
+      --gold: #D4AF37;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Navigation */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      background: rgba(7, 11, 18, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-actions { display: flex; gap: 1rem; align-items: center; }
+
+    .btn-cta {
+      background: linear-gradient(135deg, #00D2FF 0%, #0072FF 100%);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 210, 255, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* 3D Showcase Section */
+    .showcase {
+      perspective: 1000px;
+      padding: 5rem 0;
+      min-height: 120vh;
+      position: relative;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .showcase-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+    }
+
+    .card-3d-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      height: 450px;
+      position: sticky;
+      top: 20%;
+      transform-style: preserve-3d;
+      transition: transform 0.1s linear;
+    }
+
+    .card-3d {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--surface);
+    }
+
+    .card-3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2.5rem;
+      background: linear-gradient(to top, rgba(7, 11, 18, 0.95), transparent);
+    }
+
+    .card-overlay h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+    }
+
+    /* Info Grid */
+    .info-section {
+      max-width: 1100px;
+      margin: 10rem auto 5rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: var(--surface);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .info-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .info-card p, .info-card address {
+      color: var(--muted);
+      font-style: normal;
+      line-height: 1.6;
+    }
+
+    .price-tag {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+
+    /* Sticky Footer Call To Action */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 999;
+    }
+
+    @media (max-width: 768px) {
+      .card-3d-wrapper { height: 320px; width: 90%; }
+      .bottom-bar { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="logo">MOUL <span>LHOUT</span></a>
+    <div class="nav-actions">
+      <a href="tel:0520052053" class="btn-cta">📞 05 20 05 20 53</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-badge">★ 4.2 Rating (473+ Reviews)</div>
+    <h1>Fresh Ocean Flavors<br>In Casablanca</h1>
+    <p>Experience premier seafood, from our signature <em>Salade Laquée d'Avocat Aux Crevettes</em> to the catch of the day.</p>
+    <a href="tel:0520052053" class="btn-cta" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Reserve Your Table</a>
+  </section>
+
+  <!-- 3D Scrolling Showcase -->
+  <section class="showcase" id="showcase">
+    <div class="showcase-header">
+      <h2>Chef's Daily Catch</h2>
+      <p style="color: var(--muted);">Scroll down to explore</p>
+    </div>
+
+    <div class="card-3d-wrapper" id="cardWrapper">
+      <div class="card-3d">
+        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80" alt="Fresh Seafood Selection">
+        <div class="card-overlay">
+          <h3>Salade Laquée d'Avocat Aux Crevettes</h3>
+          <p>Fresh ocean prawns, ripe avocado, glazed with our signature house dressing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Operating Details -->
+  <section class="info-section">
+    <div class="info-card">
+      <h4>Location</h4>
+      <address>
+        Lot 28, Lotissement Selouane<br>
+        Magasin RDC, BD Moulouya<br>
+        Platinum Center, Casablanca 20000
+      </address>
+    </div>
+
+    <div class="info-card">
+      <h4>Hours & Pricing</h4>
+      <p>Open Daily • Closes 11:00 PM</p>
+      <div class="price-tag">MAD 100 – 400 <span style="font-size: 0.85rem; color: var(--muted); font-weight: normal;">/ person</span></div>
+    </div>
+
+    <div class="info-card">
+      <h4>Service Options</h4>
+      <p>✓ Dine-in</p>
+      <p>✓ Kerbside pickup</p>
+      <p>✓ Fast Delivery</p>
+    </div>
+  </section>
+
+  <!-- Floating Mobile-Ready Bar -->
+  <div class="bottom-bar">
+    <div>
+      <div style="font-size: 0.85rem; color: var(--muted);">Platinum Center, Casablanca</div>
+      <strong style="color: var(--gold);">Open Today until 11 PM</strong>
+    </div>
+    <a href="tel:0520052053" class="btn-cta">Call to Order Now</a>
+  </div>
+
+  <!-- 3D Scroll Logic -->
+  <script>
+    const cardWrapper = document.getElementById('cardWrapper');
+    const showcase = document.getElementById('showcase');
+
+    window.addEventListener('scroll', () => {
+      const rect = showcase.getBoundingClientRect();
+      const scrollProgress = -rect.top / (rect.height - window.innerHeight);
+
+      if (scrollProgress >= 0 && scrollProgress <= 1) {
+        // Compute 3D rotation and perspective based on scroll index
+        const rotateX = (0.5 - scrollProgress) * 30; // Tilt forward to backward
+        const rotateY = (scrollProgress - 0.5) * 20; // Slight side sway
+        const scale = 0.9 + (scrollProgress * 0.15); // Scale up smoothly
+        const translateZ = scrollProgress * 50;
+
+        cardWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale}) translateZ(${translateZ}px)`;
+      }
+    });
+  </script>
+</body>
+</html>
